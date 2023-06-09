@@ -1,55 +1,55 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>상품 등록 페이지</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .container {
             max-width: 560px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="py-5 text-center">
-        <h2>상품 등록 페이지</h2>
+        <h2 >상품 등록 페이지</h2>
     </div>
     <h4 class="mb-3">상품 정보 입력</h4>
     <form action="addproduct" method="post">
-    <div>
-            <label for="itemName">상품코드</label>
-            <input type="text" id="pdid" name="pdid" class="formcontrol"
-                   placeholder="이름을 입력하세요">
+         <div class="form-group">
+         <label for="member_id">아이디</label>  
+            <input type="text" id="writer" name="writer" class="form-control" th:value="${session.member.id}" readonly>
         </div>
-        <div>
-            <label for="itemName">상품명</label>
-            <input type="text" id="name" name="name" class="formcontrol"
-                   placeholder="이름을 입력하세요">
+        <div class="form-group">
+            <label for="pdid">상품 코드</label>
+            <input type="text" id="id" name="id" class="form-control" placeholder="상품 코드를 입력하세요">
         </div>
-        <div>
+        <div class="form-group">
+            <label for="name">상품명</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="상품명을 입력하세요">
+        </div>
+        <div class="form-group">
             <label for="price">가격</label>
-            <input type="text" id="price" name="price" class="form-control"
-                   placeholder="가격을 입력하세요">
+            <input type="text" id="price" name="price" class="form-control" placeholder="가격을 입력하세요">
         </div>
-        <div>
+        <div class="form-group">
             <label for="quantity">수량</label>
-            <input type="text" id="quantity" name="quantity" class="formcontrol"
-                   placeholder="수량을 입력하세요">
+            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
         </div>
         <hr class="my-4">
         <div class="row">
             <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">상품
-                    등록
-                </button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">상품 등록</button>
             </div>
             <div class="col">
-                <button class="w-100 btn btn-secondary btn-lg"
-                        onclick="location.href='getproductinfo'" type="button">취소
-                </button>
+                <button class="btn btn-secondary btn-lg btn-block" onclick="location.href='getproductinfo'" type="button">취소</button>
             </div>
         </div>
     </form>
 </div> <!-- /container -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

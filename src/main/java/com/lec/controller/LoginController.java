@@ -27,7 +27,7 @@ public class LoginController {
 		Member findMember = memberService.getMember(member);
 		if(findMember != null && findMember.getPassword().equals(member.getPassword())) {
 			model.addAttribute("member", findMember);  // session과 request영역에서 동시에 저장
-			return "product/getproductinfo";
+			return "redirect:getproductinfo";
 		} else {
 			return "redirect:login";
 		}
