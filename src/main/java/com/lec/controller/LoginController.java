@@ -11,7 +11,7 @@ import com.lec.domain.Member;
 import com.lec.service.MemberService;
 
 @Controller
-@SessionAttributes("member")
+@SessionAttributes("member") // Session에 저장할 속성이름 정의
 public class LoginController {
 	
 	@Autowired
@@ -27,7 +27,7 @@ public class LoginController {
 		Member findMember = memberService.getMember(member);
 		if(findMember != null && findMember.getPassword().equals(member.getPassword())) {
 			model.addAttribute("member", findMember);  // session과 request영역에서 동시에 저장
-			return "redirect:getproductinfo";
+			return "redirect:/getproductinfo";
 		} else {
 			return "redirect:login";
 		}

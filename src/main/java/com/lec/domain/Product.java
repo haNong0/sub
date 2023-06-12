@@ -19,16 +19,13 @@ import lombok.ToString;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 상품 코드
+    private Long seq; // 상품 코드
 
+    private String id;
     private String name;
     private int price;
     private int quantity;
     private String writer;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_role")
-//    private Member member;
-//
-//    // 생성자, 게터, 세터, toString 등 생략
+    
+   
 }
