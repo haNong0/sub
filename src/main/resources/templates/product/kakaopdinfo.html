@@ -59,12 +59,15 @@
 <div class="container">
     <div class="py-5 text-center">
         <h2>상품 목록</h2>
-        <p><font color="red" th:text="${session.member.name}"></font>님의 상품 목록</p> <!-- 변경된 부분: 세션에서 로그인한 아이디를 가져와 출력 -->
-    </div> 
+      <!--  <p><font color="red" th:text="${userInfo['email']}"></font>님의 상품 목록</p> 카카오 AccessToken에서 로그인한 사용자의 닉네임을 가져와서 출력 -->
+    </div>
     <div class="row">
         <div class="col">
             <button class="btn btn-primary float-end" onclick="location.href='addproduct'" type="button">상품 등록</button>
              <button class="btn btn-primary float-end" onclick="location.href='allproductlist'" type="button">전체 상품리스트</button>
+           <span th:if="${userId!=null}">
+		<form name="logout" action="http://localhost:8089/logout"><input type="submit" value="로그아웃"></form>
+	</span>
         </div>
     </div>
     <hr class="my-4">
