@@ -30,7 +30,9 @@ public class HomeController {
 		if(userInfo.get("email") != null) {
 			session.setAttribute("userId", userInfo.get("email"));
 			session.setAttribute("accessToken", accessToken);
+			System.out.println(session);
 		}
+		//session안에 userId정보를 담는 코드
 		mav.addObject("userId", userInfo.get("email"));
 		mav.setViewName("product/kakaopdinfo");
 		return mav;
@@ -46,16 +48,48 @@ public class HomeController {
 
 
 	
-	@RequestMapping(value="/logout")
-	public ModelAndView logout(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		kakaoApi.kakaoLogout((String)session.getAttribute("accessToken"));
-		session.removeAttribute("accessToken");
-		session.removeAttribute("userId");
-		mav.setViewName("index");
-		return mav;
+//	@RequestMapping(value="/logout")
+//	public ModelAndView logout(HttpSession session) {
+//		ModelAndView mav = new ModelAndView();
+//		kakaoApi.kakaoLogout((String)session.getAttribute("accessToken"));
+//		System.out.println("로그아웃기능 구현");
+//		System.out.println("accessToken:" + (String)session.getAttribute("accessToken"));
+//		session.removeAttribute("accessToken");
+//		session.removeAttribute("userId");
+////		session.invalidate();
+//		System.out.println("after accessToken:" + (String)session.getAttribute("accessToken"));
+//		mav.setViewName("/login/login");
+//		return mav;
+//	}
+	 @RequestMapping(value="/logout")
+	 public String logout(HttpSession session) {
+		 kakaoApi.kakaoLogout((String)session.getAttribute("access_Token"));
+	     session.removeAttribute("access_Token");
+	     session.removeAttribute("userId");
+	     session.invalidate();
+	     return "index";
+	 }
+//	 @RequestMapping(value = "/logout")
+//	    public ModelAndView logout(HttpSession session) {
+//	        ModelAndView mav = new ModelAndView();
+//	        
+//	        // 세션에서 사용자 정보 삭제
+//	        session.removeAttribute("userId");
+//	        session.removeAttribute("accessToken");
+//	        
+//	        // 카카오 API를 통해 카카오 계정 로그아웃 요청
+//	        String logoutRedirectUri = "http://localhost:8089/login";
+//	        String clientId = "452560c68b8f6c479009e34bf648c561";
+//	        String logoutUrl = "https://kauth.kakao.com/oauth/logout?client_id=452560c68b8f6c479009e34bf648c561&logout_redirect_uri=http://localhost:8089/login";
+//	        
+//	        // 서비스 로그아웃 처리를 위해 Logout Redirect URI로 리다이렉트
+//	        mav.setViewName("redirect:http://localhost:8089/login");
+//	        return mav;
+//	    }
 	}
-}
+
+
+
 	
 	
 	

@@ -16,7 +16,7 @@ public class KakaoAPI {
 
 	public String getAccessToken(String code) {
 		String accessToken = "";
-		String refreshToken = "";
+//		String refreshToken = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
 		
 		try {
@@ -29,7 +29,7 @@ public class KakaoAPI {
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=452560c68b8f6c479009e34bf648c561");
-			sb.append("&redirect_uri=https://localhost:8089/auth/kakao/callback");
+			sb.append("&redirect_uri=http://localhost:8089/auth/kakao/callback");
 			sb.append("&code="+code);
 			
 			bw.write(sb.toString());
@@ -51,7 +51,7 @@ public class KakaoAPI {
 			JsonElement element = parser.parse(result);
 			
 			accessToken = element.getAsJsonObject().get("access_token").getAsString();
-			refreshToken = element.getAsJsonObject().get("refresh_token").getAsString();
+//			refreshToken = element.getAsJsonObject().get("refresh_token").getAsString();
 			
 			br.close();
 			bw.close();
@@ -115,20 +115,45 @@ public class KakaoAPI {
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			
-		String result = "";
+			String result = "";
 			String line = "";
 			
 			while((line = br.readLine()) != null) {
 				result+=line;
+
 			}
 			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	
 	}
+//	// 카카오계정과 함께 로그아웃기능
+//	public void kakaoLogout(String accessToken) {
+//	    String reqURL = "https://kauth.kakao.com/oauth/logout";
+//	    try {
+//	        URL url = new URL(reqURL);
+//	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//	        conn.setRequestMethod("GET");
+//	        int responseCode = conn.getResponseCode();
+//	        System.out.println("responseCode = " + responseCode);
+//	        
+//	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//	        
+//	        String result = "";
+//	        String line = "";
+//	        
+//	        while ((line = br.readLine()) != null) {
+//	            result += line;
+//	        }
+//	        
+//	        System.out.println(result);
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	    }
+//	}
 	
-	
-	
+
 
 
 }
